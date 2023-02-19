@@ -3,7 +3,7 @@
 ##### Change these values ###
 ZONE_ID="Z00487239GRIM7AE3Z"
 DOMAIN="devops-b-71.online"
-SG_NAME="Allow-all"
+SG_NAME="sg-02811f5637016bdbd"
 
 #############################
 
