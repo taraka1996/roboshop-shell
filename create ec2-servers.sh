@@ -41,10 +41,11 @@ fi
 component=$1
 if [ -z $component ]; then
   for component in catalogue cart user shipping payment frontend mongodb mysql rabbitmq redis dispatch; do
-    COMPONENT="${component}-${env}"
+    COMPONENT="${component}
     create_ec2
   done
 else
   COMPONENT="${component}"
   create_ec2
 fi
+
