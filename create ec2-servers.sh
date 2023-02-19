@@ -3,8 +3,7 @@
 ##### Change these values ###
 ZONE_ID="Z00487239GRIM7AE3Z"
 DOMAIN="devops-b-71.online"
-SG_NAME="sg-02811f5637016bdbd"
-
+SG_NAME="allow-all"
 #############################
 
 create_ec2() {
