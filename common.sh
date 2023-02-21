@@ -6,7 +6,7 @@ code_dir=$(pwd)
    echo -e "\e[36m$1\e[0m"
  }
 
- status check() {
+ status_check() {
    if [ $1 -eq 0]; then
      echo success
      else echo failure
