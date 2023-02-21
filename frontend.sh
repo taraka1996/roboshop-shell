@@ -27,6 +27,7 @@ status_check $?
 
 print_head "STARTING NGINX "
 systemctl restart nginx >>${log_file}
+status_check $?
 
 
 
