@@ -5,3 +5,10 @@ code_dir=$(pwd)
  print_head() {
    echo -e "\e[36m$1\e[0m"
  }
+
+ status check() {
+   if [ $1 -eq 0]; then
+     echo success
+     else echo failure
+     fi
+ }
