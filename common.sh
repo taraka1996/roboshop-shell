@@ -7,8 +7,9 @@ code_dir=$(pwd)
  }
 
  status_check() {
-   if "[ $1 -eq 0]"; then
+   if [ $1 -eq 0 ]; then
      echo success
-     else echo failure
+     else
+     echo failure
      fi
  }
