@@ -19,5 +19,6 @@ status_check $?
 
 print_head "Start MongoDB Service"
 systemctl restart mongod &>>${log_file}
+status_check $?
 
 
