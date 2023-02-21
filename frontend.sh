@@ -1,11 +1,4 @@
-code_dir=$(pwd)
-log_file=/tmp/roboshop.log
-rm -f
-
-print_head()  {
-  echo -e "\e[35m$1\e[0m"
-
-}
+soruce common.sh
 
 print_head "INSTALLING NGINX"
 yum install nginx -y >>${log_file}
