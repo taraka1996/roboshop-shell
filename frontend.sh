@@ -1,4 +1,4 @@
-soruce common.sh
+source common.sh
 
 print_head "INSTALLING NGINX"
 yum install nginx -y >>${log_file}
