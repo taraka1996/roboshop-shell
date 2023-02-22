@@ -33,7 +33,8 @@ cd /app
 
 print_head  "extracting app content"
 unzip /tmp/catalogue.zip >>${log_file}
-cd /app ${log_file}
+
+cd /app >>${log_file}
 status_check $?
 
 print_head  "installing Nodejs dependencies"
