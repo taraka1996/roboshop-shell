@@ -42,11 +42,11 @@ npm install >>${log_file}
 status_check $?
 
 print_head  "copy systemd service file"
-cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service >>${log_file}
+cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service &>>${log_file}
 status_check $?
 
 print_head  "reload systemd"
-systemctl daemon-reload >>${log_file}
+systemctl daemon-reload &>>${log_file}
 status_check $?
 
 print_head  "enable catalogue  service"
@@ -58,7 +58,7 @@ systemctl restart catalogue >>${log_file}
 status_check $?
 
 print_head  "copy mongodb repo file"
-cp configs/mongodb.repo /etc/yum.repos.d/mongodb.repo >>${log_file}
+cp configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
 status_check $?
 
 print_head  "install mongo client"
