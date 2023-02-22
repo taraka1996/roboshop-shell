@@ -1,7 +1,7 @@
 source common.sh
 
 print_head  "configure Nodejs repo"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash >>${log_file}
 status_check $?
 
 print_head  "Install Nodejs"
@@ -42,7 +42,7 @@ npm install >>${log_file}
 status_check $?
 
 print_head  "copy systemd service file"
-cp ${code_dir} /configs/catalogue.service /etc/systemd/system/catalogue.service >>${log_file}
+cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service >>${log_file}
 status_check $?
 
 print_head  "reload systemd"
