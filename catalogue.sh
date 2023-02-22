@@ -9,7 +9,8 @@ yum install nodejs -y >>${log_file}
 status_check $?
 
 print_head  "create roboshop user"
- id roboshop  ${log_file}
+ id roboshop  >>${log_file}
+
  if [ $? -ne 0 ]; then
 useradd roboshop >>${log_file}
 fi
@@ -36,7 +37,7 @@ cd /app ${log_file}
 status_check $?
 
 print_head  "installing Nodejs dependencies"
-npm install ${log_file}
+npm install >>${log_file}
 status_check $?
 
 print_head  "copy systemD service file"
