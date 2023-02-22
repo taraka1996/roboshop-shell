@@ -1,7 +1,7 @@
 source common.sh
 
 print_head "Setup MongoDB repository"
-cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo >>${log_file}
+cp ${code_dir}/configs/mongod.repo /etc/yum.repos.d/mongod.repo >>${log_file}
 status_check $?
 
 
