@@ -40,7 +40,7 @@ npm install ${log_file}
 status_check $?
 
 print_head  "copy systemD service file"
-cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service ${log_file}
+cp ${code_dir} /configs/catalogue.service /etc/systemd/system/catalogue.service ${log_file}
 status_check $?
 
 print_head  "reload systemD"
