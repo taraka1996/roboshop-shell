@@ -82,11 +82,11 @@ NODEJS(){
   status_check $?
 
   print_head  "enable catalogue  service"
-  systemctl enable ${component} >>${log_file}
+  systemctl enable ${component} &>>${log_file}
   status_check $?
 
   print_head  "start catalogue  service"
-  systemctl restart ${component} >>${log_file}
+  systemctl restart ${component} &>>${log_file}
   status_check $?
 
   schema_setup
