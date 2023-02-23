@@ -16,17 +16,17 @@
  }
 
  NODEJS(){
-   print_message "Setup NodeJS repos"
+   print_head "Setup NodeJS repos"
    curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $log_file
    status_check $log_file
 
-   print_message "Install NodeJS"
+   print_head "Install NodeJS"
    yum install nodejs -y &>> $log_file
    status_check $log_file
 
    APP_PREREQ
 
-   print_message "Downloading and installing dependencies"
+   print_head "Downloading and installing dependencies"
    cd /app
    npm install &>> $log_file
    status_check $log_file
