@@ -26,7 +26,7 @@ yum install mongodb-org -y &>>${log_file}
 status_check $?
 
 print_head  "load schema"
-mongo --host mongodb.devops-b-71.online /app/schema/catalogue.js &>>${log_file}
+mongo --host mongodb.devops-b-71.online /app/schema/${component}.js &>>${log_file}
 status_check $?
 fi
 }
