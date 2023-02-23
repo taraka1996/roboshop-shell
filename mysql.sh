@@ -2,7 +2,7 @@ source common.sh
 
 mysql_root_password=$1
 if [ -z "${mysql_root_password=$1}" ]; then
-  echo "\e[31mmissing MYSQL argument\e[0m"
+  echo "\e[31mmissing mysql root password\e[0m"
   exit 1
   fi
 
@@ -27,5 +27,7 @@ systemctl start mysqld &>>${log_file}
 status_check $?
 
 print_head "set root password"
+echo show database | mysql -uroot -p${mysql_root_password}  &>>${log_file}
 mysql_secure_installation --set-root-pass &{mysql_root_password}  &>>${log_file}
+fi
 status_check $?
