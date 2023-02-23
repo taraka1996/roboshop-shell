@@ -45,7 +45,8 @@ status_check $?
 print_head  "load schema"
 mongo --host mongodb.devops-b-71.online </app/schema/${component}.js &>>${log_file}
 status_check $?
-elif ["&(schema_type) == "mysql" ]; then
+elif [ "&(schema_type) == "mysql" ]; then
+
 print_head "MYSQL client"
 yum install mysql -y
 
