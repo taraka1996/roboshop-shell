@@ -10,8 +10,8 @@ print_head  "disabling MYSQL  8 version"
 dnf module disable mysql -y &>>${log_file}
 status_check $?
 
-print_head  "copy systemd service file"
-cp ${code_dir}/configs/mysql.repo /etc/systemd/system/mysql.repo &>>${log_file}
+print_head  "copy mysql file"
+cp ${code_dir}/configs/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
 status_check $?
 
 print_head "installing MYSQL server"
