@@ -6,8 +6,7 @@ if [ -z "${mysql_root_password=$1}" ]; then
   exit 1
   fi
 
-
- print_head  "disabling MYSQL  8 version"
+print_head  "disabling MYSQL  8 version"
 dnf module disable mysql -y &>>${log_file}
 status_check $?
 
