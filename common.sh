@@ -90,5 +90,4 @@ NODEJS(){
   status_check $?
 
   schema_setup
-
 }
