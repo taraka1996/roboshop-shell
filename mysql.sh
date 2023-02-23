@@ -29,5 +29,6 @@ status_check $?
 print_head "set root password"
 echo show database | mysql -uroot -p${mysql_root_password}  &>>${log_file}
 mysql_secure_installation --set-root-pass &{mysql_root_password}  &>>${log_file}
+
 fi
 status_check $?
