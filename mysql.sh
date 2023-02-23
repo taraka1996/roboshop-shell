@@ -11,6 +11,10 @@ if [ -z "${mysql_root_password=$1}" ]; then
 dnf module disable mysql -y &>>${log_file}
 status_check $?
 
+print_head  "copy systemd service file"
+cp ${code_dir}/configs/mysql.repo /etc/systemd/system/mysql.repo &>>${log_file}
+status_check $?
+
 print_head "installing MYSQL server"
 yum install mysql-community-server -y &>>${log_file}
 status_check $?
