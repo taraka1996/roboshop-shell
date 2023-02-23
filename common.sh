@@ -77,15 +77,15 @@ NODEJS(){
   cp ${code_dir}/configs/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
   status_check $?
 
-  print_head  "reload systemd"
+  print_head  "reload ${component}"
   systemctl daemon-reload &>>${log_file}
   status_check $?
 
-  print_head  "enable catalogue  service"
+  print_head  "enable ${component}"
   systemctl enable ${component} &>>${log_file}
   status_check $?
 
-  print_head  "start catalogue  service"
+  print_head  "start ${component}"
   systemctl restart ${component} &>>${log_file}
   status_check $?
 
