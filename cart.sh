@@ -1,4 +1,4 @@
-common.sh
-
-component=cart
+source common.sh
+component="cart"
+schema="false"
 NODEJS
