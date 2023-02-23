@@ -13,24 +13,82 @@
      else
      echo failure
      fi
- }
+}
 
- NODEJS(){
-   print_head "Setup NodeJS repos"
-   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $log_file
-   status_check $log_file
+schema_setup(){
+  if [ "${schema_type}" == "mongo"  ]; then
+    print_head "copying MongoDB repo file"
+    cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+    status_check $?
 
-   print_head "Install NodeJS"
-   yum install nodejs -y &>> $log_file
-   status_check $log_file
+print_head "Install MongoDB"
+yum install mongodb-org -y &>>${log_file}
+status_check $?
 
-   APP_PREREQ
+print_head  "load schema"
+mongo --host mongodb.devops-b-71.online /app/schema/catalogue.js &>>${log_file}
+status_check $?
+fi
+}
 
-   print_head "Downloading and installing dependencies"
-   cd /app
-   npm install &>> $log_file
-   status_check $log_file
+NODEJS(){
+  print_head  "configure Nodejs repo"
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash >>${log_file}
+  status_check $?
 
-   SYSTEMD_SETUP
-   LOAD_SCHEMA
- }
+  print_head  "Install Nodejs"
+  yum install nodejs -y >>${log_file}
+  status_check $?
+
+  print_head  "create roboshop user"
+   id roboshop  >>${log_file}
+
+   if [ $? -ne 0 ]; then
+  useradd roboshop >>${log_file}
+  fi
+  status_check $?
+
+  print_head  "create application directory"
+  if [ ! -d /app ]; then
+  mkdir /app >>${log_file}
+  fi
+  status_check $?
+
+  print_head  "delete old content"
+  rm -rf /app/* >>${log_file}
+  status_check $?
+
+  print_head  "downloading app content"
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip >>${log_file}
+  status_check $?
+  cd /app
+
+  print_head  "extracting app content"
+  unzip /tmp/${component}.zip >>${log_file}
+
+  cd /app >>${log_file}
+  status_check $?
+
+  print_head  "installing Nodejs dependencies"
+  npm install >>${log_file}
+  status_check $?
+
+  print_head  "copy systemd service file"
+  cp ${code_dir}/configs/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+  status_check $?
+
+  print_head  "reload systemd"
+  systemctl daemon-reload &>>${log_file}
+  status_check $?
+
+  print_head  "enable catalogue  service"
+  systemctl enable ${component} >>${log_file}
+  status_check $?
+
+  print_head  "start catalogue  service"
+  systemctl restart ${component} >>${log_file}
+  status_check $?
+
+  schema_setup
+
+}
