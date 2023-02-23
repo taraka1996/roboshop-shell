@@ -14,3 +14,23 @@
      echo failure
      fi
  }
+
+ NODEJS(){
+   print_message "Setup NodeJS repos"
+   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $log_file
+   status_check $log_file
+
+   print_message "Install NodeJS"
+   yum install nodejs -y &>> $log_file
+   status_check $log_file
+
+   APP_PREREQ
+
+   print_message "Downloading and installing dependencies"
+   cd /app
+   npm install &>> $log_file
+   status_check $log_file
+
+   SYSTEMD_SETUP
+   LOAD_SCHEMA
+ }
