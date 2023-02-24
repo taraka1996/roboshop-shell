@@ -38,4 +38,4 @@ status_check $?
 print_head "Configure Permissions for App User"
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>>${log_file}
 status_check $?
-Footer
+
