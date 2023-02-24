@@ -1,9 +1,9 @@
 
 source common.sh
 
-if [ -z "$roboshop_rabbitmq_password" ]; then
+if [ -z ne0 "$roboshop_rabbitmq_password" ]; then
   echo "Variable roboshop_rabbitmq_password is missing"
-  exit
+  exit 1
 fi
 
 component="dispatch"
